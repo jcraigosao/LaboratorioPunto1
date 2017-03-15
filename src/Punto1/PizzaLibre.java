@@ -1,72 +1,94 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Punto1;
 
-/**
- *
- * @author i7hpinñi
- */
+package Punto1;
+/** En esta clase encontraremos la "plantilla" para la creacion de pizzas
+ * (libres) creadas por el cliente 
+*/
 public class PizzaLibre {
     private String nombre;
     private Ingredientes[] ingrediente;    
     private int tamaño;
-    private double precio;
 
-
+/** Este constructor es el que permite la creacion de 
+     * objetos de tipo PizzaLibre
+     * @param nombre 
+     * Indica el nombre de la pizza libre
+     * @param ingrediente 
+     * Indica los ingredientes de la pizza libre
+     * @param tamaño 
+     * Indica el tamaño de la pizza libre
+     */
     public PizzaLibre(String nombre, Ingredientes[] ingrediente, int tamaño) {
         this.nombre = nombre;
         this.tamaño = tamaño;
-        this.ingrediente= new Ingredientes[5];
+        this.ingrediente= ingrediente;
     }
-
+/** Permite obtener el nombre de la pizza libre
+     * @return nombre*/   
     public String getNombre() {
         return nombre;
     }
-
+/** Permite obtener el tamaño de la pizza libre
+     * @return tamaño*/   
     public int getTamaño() {
         return tamaño;
     }
-
+/** Permite cambiar el nombre de la pizza libre si es necesario
+     * @param nombre
+     * Indica el nuevo nombre que se le asignara a la pizza libre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+/** Permite cambiar el tamaño de la pizza libre si es necesario
+     * @param tamaño
+     * Indica el nuevo tamaño que se le asignara a la pizza libre
+     */
     public void setTamaño(int tamaño) {
         this.tamaño = tamaño;
     }
-
+/** Permite cambiar los ingredientes de la pizza libre si es necesario
+     * @param ingrediente
+     * Indica los nuevos ingredientes que se le asignaran a la pizza libre
+     */
     public void setIngrediente(Ingredientes[] ingrediente) {
         this.ingrediente = ingrediente;
     }
-
+/** Permite obtener los ingredientes de la pizza libre
+     * @return ingrediente*/   
     public Ingredientes[] getIngrediente() {
         return ingrediente;
     }
+/** Se identifica el tamaño de la pizza libre y el precio que llevara 
+ * segun este
+     * @param cantidad_ing
+     * con este parametro se determina la cantidad de ingredientes que se 
+     * agregaran a la pizza y asi establecer su precio
+     * @return precioxtam */
+    public double precioxtamaño(int cantidad_ing){
+        double precio=0;
+        double precioxtam=0;
 
-    public double precioxtamaño(){
-        double w= ingrediente[0].getPrecio();
-        double l= ingrediente[1].getPrecio();
-        double m= ingrediente[2].getPrecio();
-        double n= ingrediente[3].getPrecio();
-        double o= ingrediente[4].getPrecio();
-        double k= w+l+m+n+o;
+        for (int i=0; i<cantidad_ing; i++){
+            precio+=ingrediente[i].getPrecio();
+        }
+        
         switch (tamaño) {
             case 6:
-                precio= k;
-              
+                precioxtam= precio;
+                break;
             case 9:
-                precio= (1.5)*k;
-               
+                precioxtam= 1.5*precio;
+                break;
             case 12:
-                precio= 2*k;
-              
+                precioxtam= 2*precio;
+                break;
             default:
                 break;
+        
         }
-        return precio;
-    }
+        
+       
     
+    return precioxtam;
+}
 }
